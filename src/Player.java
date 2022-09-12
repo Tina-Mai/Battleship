@@ -31,13 +31,17 @@ public class Player {
         //create shots - where you have shot
         for (int i=0; i < shots.length; i++) {
             for (int j=0; j < shots[i].length; j++) {
-                if 
+                if checkShot() 
             }
         }
     }
 
-    public void shoot(int x, int y, Player player) {
+    public void shoot(int x, int y, Player p) {
         // check coordinate based on the symbol in the opponent's grid
+    }
+
+    public boolean checkShot(int x, int y, Player p) {
+        return false;
     }
 
     public void updateShips() {
