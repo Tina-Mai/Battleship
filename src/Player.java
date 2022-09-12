@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private String[][] grid; // grid of your own ships
     private String[][] shots; // grid of where you've shot (opponent's ships)
+    // "—" = water, "O" = misses, "X" = hits, "*" = ships
     private ArrayList<Ship> ships;
 
     public Player(String name) {
@@ -21,19 +22,19 @@ public class Player {
         }
 
         // create grid - your ships
-        // "—" = water, "O" = misses, "X" = hits, "*" = ships
         for (int i=0; i < grid.length; i++) {
             for (int j=0; j < grid[i].length; j++) {
                 grid[i][j] = "—"; // "—" = water
             }
         }
 
-        //create shots - where you have shot
+         // create shots – empty grid that tracks your shots
         for (int i=0; i < shots.length; i++) {
             for (int j=0; j < shots[i].length; j++) {
-                if checkShot() 
+                shots[i][j] = "—"; // "—" = water
             }
         }
+
     }
 
     public void shoot(int x, int y, Player opponent) {
@@ -47,8 +48,8 @@ public class Player {
         }
     }
 
-    public void updateShips() {
-
+    public void updateShips(int x, int y) { // update coordinates in ships
+        // (x, y) is the coordinate that the opponent shot
     }
 
     public ArrayList<Ship> getShips() {
