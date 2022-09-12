@@ -36,13 +36,22 @@ public class Player {
         }
     }
 
-    public void shoot(int x, int y, Player p) {
+    public void shoot(int x, int y, Player opponent) {
         // check coordinate based on the symbol in the opponent's grid
+        String[][] oppGrid = opponent.getGrid();
+        if (oppGrid[x][y].equals("*")) {
+            shots[x][y] = "X";
+        }
+        else if (oppGrid[x][y].equals("—")) {
+            shots[x][y] = "O";
+        }
     }
 
     public void updateShips() {
 
     }
 
-
+    public String[][] getShots(){
+        return shots;
+    }
 }

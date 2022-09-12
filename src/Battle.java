@@ -25,6 +25,8 @@ public class Battle {
     }
 
     public void play() {
+        while (!gameOver){
 
+        }
     }
 }
