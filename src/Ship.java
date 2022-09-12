@@ -13,6 +13,20 @@ public class Ship {
         this.length = length;
     }
 
+    public void addCoordinates(int x, int y){
+        int[] list = {x,y};
+        coordinates.add(list);
+    }
+    public String getName(){
+        return name;
+    }
+    public int getLength(){
+        return length;
+    }
+    public ArrayList<int[]> getCoordinates(){
+        return coordinates;
+    }
 
+//hi
 
 }

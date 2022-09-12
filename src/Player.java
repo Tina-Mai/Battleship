@@ -51,6 +51,18 @@ public class Player {
 
     }
 
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String[][] getGrid(){
+        return grid;
+    }
+
     public String[][] getShots(){
         return shots;
     }
