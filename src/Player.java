@@ -40,10 +40,6 @@ public class Player {
         // check coordinate based on the symbol in the opponent's grid
     }
 
-    public boolean checkShot(int x, int y, Player p) {
-        return false;
-    }
-
     public void updateShips() {
 
     }
