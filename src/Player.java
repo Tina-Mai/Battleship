@@ -31,7 +31,7 @@ public class Player {
         //create shots - where you have shot
         for (int i=0; i < shots.length; i++) {
             for (int j=0; j < shots[i].length; j++) {
-                shots[i][j] = "—";
+                if 
             }
         }
     }
