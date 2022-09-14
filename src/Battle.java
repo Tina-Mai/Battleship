@@ -17,6 +17,7 @@ public class Battle {
         System.out.print("Player 2 name: ");
         String name2 = s.nextLine();
         player2 = new Player(name2);
+        System.out.println("something");
     }
 
     public void initializeGame(Player player) {
