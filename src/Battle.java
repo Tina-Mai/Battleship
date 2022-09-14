@@ -73,15 +73,61 @@ public class Battle {
 
     }
 
-    public void play() {
+    // checks if the coordinates that the player entered are valid
+    /*public boolean checkCoords(int x, int y, String o, Player p, int length) {
+        String[][] grid = p.getGrid();
+        o = o.toLowerCase();
+
+        // first check if user inputs are actually valid numbers and strings
+        if (!o.equals("horizontal") && !o.equals("vertical")) {
+            System.out.println("Invalid orientation.  Please type \"horizontal\" or \"vertical\".");
+            return false;
+        }
+        if (!(x >= 0 && x < grid[0].length)) {
+            System.out.println("Invalid x.  Must be >0 and <" + grid[0].length);
+            return false;
+        }
+        if (!(y >= 0 && y < grid.length)) {
+            System.out.println("Invalid y.  Must be >0 and <" + grid[0].length);
+            return false;
+        }
+
+        // then check if the combo fits on the grid (if it hits a wall)
+        if ((o.equals("vertical") && y + length >= grid.length) || (o.equals("horizontal") && x + length >= grid[0].length)) {
+            System.out.println("That combo doesn't fit on the grid.");
+            return false;
+        }
+
+        // finally check if the combo will overlap with another ship
+        if (o.equals("vertical")) {
+            for (int i = y; i < length; i++) {
+                if (grid[x][i].equals("*")) {
+                    System.out.println("That combo overlaps with another ship.");
+                    return false;
+                }
+            }
+        }
+        if (o.equals("horizontal")) {
+            for (int i = x; i < length; i++) {
+                if (grid[i][y].equals("*")) {
+                    System.out.println("That combo overlaps with another ship.");
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+    }*/
+    /*public void play() {
         boolean playerSwitch = true;
         Player currentPlayer;
         Player opponentPlayer;
         //when player is true, player is player 1
         //when player is false, player is player 2
 
-        //while (!Battle.isGameOver()){
-            while (true){
+        while (!Battle.isGameOver()){
+
             //will be initialized to player 1- will run through and then at end will switch to next player
             if (playerSwitch){
                 currentPlayer = player1;
@@ -140,4 +186,4 @@ public class Battle {
             playerSwitch=!playerSwitch;
         }
     }
-}
+
