@@ -27,6 +27,6 @@ public class Ship {
         return coordinates;
     }
 
-//hi
+
 
 }
