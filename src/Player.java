@@ -4,8 +4,9 @@ public class Player {
 
     private String name;
     private String[][] grid; // grid of your own ships
+    // "—" = water, "*" = ships
     private String[][] shots; // grid of where you've shot (opponent's ships)
-    // "—" = water, "O" = misses, "X" = hits, "*" = ships
+    // "—" = water, "O" = misses, "X" = hits
     private ArrayList<Ship> ships;
 
     public Player(String name) {
@@ -35,7 +36,6 @@ public class Player {
                 shots[i][j] = "—"; // "—" = water
             }
         }
-
     }
 
     public boolean shoot(int x, int y, Player opponent) {

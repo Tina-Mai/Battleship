@@ -17,12 +17,27 @@ public class Battle {
         System.out.print("Player 2 name: ");
         String name2 = s.nextLine();
         player2 = new Player(name2);
-        System.out.println("something");
+
+        System.out.println("——————————");
+
+        initializeGame(player1);
+        System.out.println(player1.getName() + "'s final grid:");
+        player1.printGrid();
+
+        System.out.println("——————————");
+
+        initializeGame(player2);
+        System.out.println(player2.getName() + "'s final grid:");
+        player2.printGrid();
+
+        System.out.println("——————————");
+
     }
 
     public void initializeGame(Player player) {
         // for one player, iterate through ships and ask where they would like to place it
         System.out.println(player.getName()+": ");
+
         for (int i = 0; i<player.getShips().size(); i++){
 
             Ship currentShip = player.getShips().get(i);
@@ -36,6 +51,7 @@ public class Battle {
             int startingX = s.nextInt() - 1;
             System.out.print("y: ");
             int startingY = s.nextInt() - 1;
+            s.nextLine();
             System.out.print("Orientation (horizontal or vertical): ");
             String orientation = s.nextLine();
 
@@ -108,9 +124,6 @@ public class Battle {
                     return false;
                 }
             }
-
-            return true;
-
         }
         return true;
     }
@@ -134,10 +147,14 @@ public class Battle {
                 opponentPlayer = player1;
             }
 
+            System.out.println(currentPlayer.getName() + "'s turn!\n");
+
             //Show the player their ships
+            System.out.println("Your grid of ships:");
             currentPlayer.printGrid();
 
             //Show the player their shots fired
+            System.out.println("\nStarting shooting!");
             currentPlayer.printShots();
 
             //ask where they want to shoot and validate
@@ -155,7 +172,6 @@ public class Battle {
                 yCoord = s.nextInt()-1;
             }
 
-
             //While loop until shoot is false (use shoot method)
             boolean hit = currentPlayer.shoot(xCoord, yCoord, opponentPlayer);
             if (!hit){
@@ -170,6 +186,7 @@ public class Battle {
 
                 //take new coordinates
                 System.out.println("Play again!");
+                currentPlayer.printShots();
                 System.out.println("What x-Coord do you want to shoot?");
                 xCoord = s.nextInt()-1;
                 while (xCoord<0 || xCoord>9){
@@ -191,6 +208,8 @@ public class Battle {
 
             //switch players
             playerSwitch=!playerSwitch;
+
+            System.out.println("——————————");
         }
     }
         public boolean isGameOver () {
