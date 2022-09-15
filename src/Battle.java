@@ -37,29 +37,18 @@ public class Battle {
             System.out.print("Orientation (horizontal or vertical): ");
             String orientation = s.nextLine();
 
-            /*
             // validate user choice
-            while (checkCoords(startingX, startingY, orientation, player, length).equals("invalid orientation")) {
-                System.out.print("Invalid orientation. Please type \"horizontal\" or \"vertical\": ");
+            while (!checkCoords(startingX, startingY, orientation, player, length)) {
+                System.out.println("——————————");
+                System.out.println("Try a different combo of x, y, and orientation");
+                System.out.print("x: ");
+                startingX = s.nextInt() - 1;
+                System.out.print("y: ");
+                startingY = s.nextInt() - 1;
+                s.nextLine();
+                System.out.print("Orientation: ");
                 orientation = s.nextLine();
             }
-            while (checkCoords(startingX, startingY, orientation, player, length).equals("invalid x")) {
-                System.out.print("Invalid x. Pick a new x: ");
-                startingX = s.nextInt() - 1;
-            }
-            while (checkCoords(startingX, startingY, orientation, player, length).equals("invalid y")) {
-                System.out.print("Invalid y. Pick a new y: ");
-                startingY = s.nextInt() - 1;
-            }
-            while (checkCoords(startingX, startingY, orientation, player, length).equals("already a ship")) {
-                System.out.println("There's already a ship there.");
-                System.out.print("Pick a new x: ");
-                startingX = s.nextInt()-1;
-                System.out.print("Pick a new y: ");
-                startingY = s.nextInt()-1;
-            }
-
-             */
 
             // iterate through the length of the ship adding coordinates to the ship's coordinate list based on user
             // input and adding the ship to the player's grid
@@ -75,7 +64,7 @@ public class Battle {
     }
 
     // checks if the coordinates that the player entered are valid
-    /*public boolean checkCoords(int x, int y, String o, Player p, int length) {
+    public boolean checkCoords(int x, int y, String o, Player p, int length) {
         String[][] grid = p.getGrid();
         o = o.toLowerCase();
 
@@ -132,11 +121,11 @@ public class Battle {
             //will be initialized to player 1- will run through and then at end will switch to next player
             if (playerSwitch){
                 currentPlayer = player1;
-                opponentPlayer=player2;
+                opponentPlayer = player2;
             }
             else {
                 currentPlayer = player2;
-                opponentPlayer=player1;
+                opponentPlayer = player1;
             }
 
             //Show the player their ships
@@ -150,36 +139,42 @@ public class Battle {
             int xCoord = s.nextInt();
             while (xCoord<1 || xCoord>10){
                 System.out.println("Please put a valid number 1-10.");
-                xCoord = s.nextInt();
+                xCoord = s.nextInt()-1;
             }
 
             System.out.println("What y-Coord do you want to shoot?");
             int yCoord = s.nextInt();
             while(yCoord < 1 || yCoord > 10) {
                 System.out.println("Please put a valid number 1-10.");
-                yCoord = s.nextInt();
+                yCoord = s.nextInt()-1;
             }
 
 
             //While loop until shoot is false (use shoot method)
-            while (currentPlayer.shoot(xCoord-1, yCoord-1, opponentPlayer)){
+            boolean hit = currentPlayer.shoot(xCoord, yCoord, opponentPlayer);
+            if (!hit){
+                System.out.println("You missed!");
+            }
+            while (hit){
                 //check if ship is sunk or just hit using UpdateShips
                 System.out.println("Direct Hit!");
-                currentPlayer.updateShips(xCoord-1, yCoord-1);
+                currentPlayer.updateShips(xCoord, yCoord, opponentPlayer);
+
+                System.out.println("——————————");
 
                 //take new coordinates
                 System.out.println("Play again!");
                 System.out.println("What x-Coord do you want to shoot?");
-                xCoord = s.nextInt();
-                while (xCoord<1 || xCoord>10){
+                xCoord = s.nextInt()-1;
+                while (xCoord<0 || xCoord>9){
                     System.out.println("Please put a valid number 1-10.");
-                    xCoord = s.nextInt();
+                    xCoord = s.nextInt()-1;
                 }
                 System.out.println("What y-Coord do you want to shoot?");
-                yCoord = s.nextInt();
-                while(yCoord < 1 || yCoord > 10) {
+                yCoord = s.nextInt()-1;
+                while(yCoord < 0 || yCoord > 9) {
                     System.out.println("Please put a valid number 1-10.");
-                    yCoord = s.nextInt();
+                    yCoord = s.nextInt()-1;
                 }
             }
 
