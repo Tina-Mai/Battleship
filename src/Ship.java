@@ -19,8 +19,11 @@ public class Ship {
     }
 
     public void removeCoordinates(int x, int y) {
-        int[] coord = {x,y};
-        coordinates.remove(coord);
+        for (int i = coordinates.size() - 1; i >= 0; i--) {
+            if (coordinates.get(i)[0] == x && coordinates.get(i)[1] == y) {
+                coordinates.remove(i);
+            }
+        }
     }
 
     public String getName(){

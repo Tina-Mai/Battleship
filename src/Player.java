@@ -64,8 +64,8 @@ public class Player {
             for (int j=0; j<ship.getCoordinates().size(); j++){
                 int[] coords = ship.getCoordinates().get(j);
                 if (coords[0]==x && coords[1]==y){
-                    ship.removeCoordinates(x,y);
-                    if (ship.getCoordinates().size() == 0) {
+                    ships.get(i).removeCoordinates(x,y);
+                    if (ships.get(i).getCoordinates().size() == 0) {
                         System.out.println("You sunk " + opponent.getName() + "'s " + ship.getName() + "!");
                     }
                 }

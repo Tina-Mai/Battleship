@@ -178,9 +178,16 @@ public class Battle {
                 System.out.println("You missed!");
             }
             while (hit){
-                //check if ship is sunk or just hit using UpdateShips
+
+                // check if ship is sunk or just hit using UpdateShips
                 System.out.println("Direct Hit!");
                 currentPlayer.updateShips(xCoord, yCoord, opponentPlayer);
+
+                // check is game is over after hit
+                if (isGameOver()) {
+                    System.out.println("Game over!");
+                    break;
+                }
 
                 System.out.println("——————————");
 
@@ -207,9 +214,8 @@ public class Battle {
             }
 
             //switch players
-            playerSwitch=!playerSwitch;
+            playerSwitch =! playerSwitch;
 
-            System.out.println("——————————");
         }
     }
     public boolean isGameOver () {
