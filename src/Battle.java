@@ -186,6 +186,7 @@ public class Battle {
                 // check is game is over after hit
                 if (isGameOver()) {
                     System.out.println("Game over!");
+                    gameOver = true;
                     break;
                 }
 
