@@ -177,6 +177,7 @@ public class Battle {
             boolean hit = currentPlayer.shoot(xCoord, yCoord, opponentPlayer);
             if (!hit){
                 System.out.println("You missed!");
+                System.out.println("——————————");
             }
             while (hit){
 
