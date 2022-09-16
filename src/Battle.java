@@ -234,17 +234,6 @@ public class Battle {
                 p2 = false;
             }
         }
-        if (p1 || p2) {
-            if (p2) {
-                System.out.println("——————————");
-                System.out.println(player1.getName() + " won");
-            }
-            if (p1) {
-                System.out.println("——————————");
-                System.out.println(player2.getName() + " won");
-            }
-            return true;
-        }
         return false;
     }
 }
