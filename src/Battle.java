@@ -212,27 +212,34 @@ public class Battle {
             System.out.println("——————————");
         }
     }
-        public boolean isGameOver () {
-            // iterate through all the ships in each player's list, if any of them have coordinates left in their list
-            // that player is false, if both players are false, gameOver is false. if one of the players has only empty
-            // coordinate lists, return true
-            boolean p1 = true;
-            boolean p2 = true;
-            for (int i = 0; i < player1.getShips().size(); i++) {
-                if (player1.getShips().get(i).getCoordinates().size() > 0) {
-                    p1 = false;
-                }
+    public boolean isGameOver () {
+        // iterate through all the ships in each player's list; if any of them have coordinates left in their list
+            // that player is false, if both players are false, gameOver is false. if one of the players has only
+            // empty coordinate lists, return true
+        boolean p1 = true; // true means that the player's ships are all gone
+        boolean p2 = true;
+        for (int i = 0; i < player1.getShips().size(); i++) {
+            if (player1.getShips().get(i).getCoordinates().size() > 0) {
+                p1 = false;
             }
-            for (int i = 0; i < player2.getShips().size(); i++) {
-                if (player2.getShips().get(i).getCoordinates().size() > 0) {
-                    p2 = false;
-                }
-            }
-            if (p1 || p2) {
-                return true;
-            }
-            return false;
         }
-
+        for (int i = 0; i < player2.getShips().size(); i++) {
+            if (player2.getShips().get(i).getCoordinates().size() > 0) {
+                p2 = false;
+            }
+        }
+        if (p1 || p2) {
+            if (p2) {
+                System.out.println("——————————");
+                System.out.println(player1.getName() + " won");
+            }
+            if (p1) {
+                System.out.println("——————————");
+                System.out.println(player2.getName() + " won");
+            }
+            return true;
+        }
+        return false;
     }
+}
 
