@@ -43,6 +43,7 @@ public class Player {
         // returns whether the shot was a hit or miss
         String[][] oppGrid = opponent.getGrid();
         if (oppGrid[y][x].equals("*")) {
+            opponent.updateGrid(x, y, "—");
             shots[y][x] = "X";
             return true;
         }

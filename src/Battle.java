@@ -9,6 +9,7 @@ public class Battle {
 
     public Battle() {
         s = new Scanner(System.in);
+        gameOver = false;
 
         System.out.print("Player 1 name: ");
         String name1 = s.nextLine();
@@ -135,7 +136,7 @@ public class Battle {
         //when player is true, player is player 1
         //when player is false, player is player 2
 
-        while (!isGameOver()){
+        while (!gameOver){
 
             //will be initialized to player 1- will run through and then at end will switch to next player
             if (playerSwitch){
@@ -223,19 +224,55 @@ public class Battle {
         // iterate through all the ships in each player's list; if any of them have coordinates left in their list
             // that player is false, if both players are false, gameOver is false. if one of the players has only
             // empty coordinate lists, return true
-        boolean p1 = true; // true means that the player's ships are all gone
-        boolean p2 = true;
+
+        int p1EmptyShips = 0;
+        int p2EmptyShips = 0;
+
         for (int i = 0; i < player1.getShips().size(); i++) {
-            if (player1.getShips().get(i).getCoordinates().size() > 0) {
-                p1 = false;
+            if (player1.getShips().get(i).getCoordinates().size() == 0) {
+                p1EmptyShips++;
+            }
+            if (player1.getShips().size() == p1EmptyShips) {
+                System.out.println("——————————");
+                System.out.println(player2.getName() + " won");
+                return true;
             }
         }
         for (int i = 0; i < player2.getShips().size(); i++) {
-            if (player2.getShips().get(i).getCoordinates().size() > 0) {
-                p2 = false;
+            if (player2.getShips().get(i).getCoordinates().size() == 0) {
+                p2EmptyShips++;
+            }
+            if (player2.getShips().size() == p2EmptyShips) {
+                System.out.println("——————————");
+                System.out.println(player1.getName() + " won");
+                return true;
             }
         }
         return false;
+
+//        for (int i = 0; i < player1.getShips().size(); i++) {
+//            if (player1.getShips().get(i).getCoordinates().size() > 0) {
+//                p1 = false;
+//            }
+//        }
+//        for (int i = 0; i < player2.getShips().size(); i++) {
+//            if (player2.getShips().get(i).getCoordinates().size() > 0) {
+//                p2 = false;
+//            }
+//        }
+//        if (p1 || p2) {
+//            if (p2) {
+//                System.out.println("——————————");
+//                System.out.println(player1.getName() + " won");
+//                return true;
+//            }
+//            if (p1) {
+//                System.out.println("——————————");
+//                System.out.println(player2.getName() + " won");
+//                return true;
+//            }
+//        }
+//        return false;
     }
 }
 
