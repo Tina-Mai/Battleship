@@ -159,17 +159,24 @@ public class Battle {
             currentPlayer.printShots();
 
             //ask where they want to shoot and validate
-            System.out.println("What x-Coord do you want to shoot?");
+            System.out.print("What x-Coord do you want to shoot? ");
             int xCoord = s.nextInt()-1;
             while (xCoord<0 || xCoord>9){
-                System.out.println("Please put a valid number 1-10.");
+                System.out.print("Please enter a valid x number 1-10: ");
                 xCoord = s.nextInt()-1;
             }
-
-            System.out.println("What y-Coord do you want to shoot?");
-            int yCoord = s.nextInt() -1;
-            while(yCoord < 0 || yCoord > 9) {
-                System.out.println("Please put a valid number 1-10.");
+            System.out.print("What y-Coord do you want to shoot? ");
+            int yCoord = s.nextInt()-1;
+            while (yCoord < 0 || yCoord > 9) {
+                System.out.print("Please enter a valid y number 1-10: ");
+                yCoord = s.nextInt()-1;
+            }
+            // validate that they aren't shooting in a place where they've already shot
+            while (!currentPlayer.getShots()[yCoord][xCoord].equals("—")) {
+                System.out.println("You've already shot there. Try another x and y.");
+                System.out.print("What x-Coord do you want to shoot? ");
+                xCoord = s.nextInt()-1;
+                System.out.print("What y-Coord do you want to shoot? ");
                 yCoord = s.nextInt()-1;
             }
 
@@ -197,22 +204,31 @@ public class Battle {
                 //take new coordinates
                 System.out.println("Play again!");
                 currentPlayer.printShots();
-                System.out.println("What x-Coord do you want to shoot?");
+                System.out.print("What x-Coord do you want to shoot? ");
                 xCoord = s.nextInt()-1;
                 while (xCoord<0 || xCoord>9){
-                    System.out.println("Please put a valid number 1-10.");
+                    System.out.print("Please enter a valid x number 1-10: ");
                     xCoord = s.nextInt()-1;
                 }
-                System.out.println("What y-Coord do you want to shoot?");
+                System.out.print("What y-Coord do you want to shoot? ");
                 yCoord = s.nextInt()-1;
-                while(yCoord < 0 || yCoord > 9) {
-                    System.out.println("Please put a valid number 1-10.");
+                while (yCoord < 0 || yCoord > 9) {
+                    System.out.print("Please enter a valid y number 1-10: ");
+                    yCoord = s.nextInt()-1;
+                }
+                // validate that they aren't shooting in a place where they've already shot
+                while (!currentPlayer.getShots()[yCoord][xCoord].equals("—")) {
+                    System.out.println("You've already shot there. Try another x and y.");
+                    System.out.print("What x-Coord do you want to shoot? ");
+                    xCoord = s.nextInt()-1;
+                    System.out.print("What y-Coord do you want to shoot? ");
                     yCoord = s.nextInt()-1;
                 }
                 hit = currentPlayer.shoot(xCoord, yCoord, opponentPlayer);
 
                 if (!hit){
                     System.out.println("You missed!");
+                    System.out.println("——————————");
                 }
             }
 
@@ -222,58 +238,36 @@ public class Battle {
         }
     }
     public boolean isGameOver () {
-        // iterate through all the ships in each player's list; if any of them have coordinates left in their list
-            // that player is false, if both players are false, gameOver is false. if one of the players has only
-            // empty coordinate lists, return true
+        // for each player, iterate through the grid of shots they've taken; if the number of Xs (X = hit) equals
+        // 17 (the number of ship coords that could be hit), then they've hit all the ships on the grid and won
 
-        int p1EmptyShips = 0;
-        int p2EmptyShips = 0;
-
-        for (int i = 0; i < player1.getShips().size(); i++) {
-            if (player1.getShips().get(i).getCoordinates().size() == 0) {
-                p1EmptyShips++;
-            }
-            if (player1.getShips().size() == p1EmptyShips) {
-                System.out.println("——————————");
-                System.out.println(player2.getName() + " won");
-                return true;
+        int p1Counter = 0; // counts how many successful shots Player 1 has
+        for (int i=0; i<player1.getShots().length; i++) {
+            for (int j=0; j<player1.getShots()[0].length; j++) {
+                if (player1.getShots()[i][j].equals("X"))
+                    p1Counter++;
             }
         }
-        for (int i = 0; i < player2.getShips().size(); i++) {
-            if (player2.getShips().get(i).getCoordinates().size() == 0) {
-                p2EmptyShips++;
-            }
-            if (player2.getShips().size() == p2EmptyShips) {
-                System.out.println("——————————");
-                System.out.println(player1.getName() + " won");
-                return true;
+        if (p1Counter == 17) { // there are 17 coordinates with ships
+            System.out.println("——————————");
+            System.out.println(player1.getName() + " won");
+            return true;
+        }
+
+        int p2Counter = 0; // counts how many successful shots Player 2 has
+        for (int i=0; i<player2.getShots().length; i++) {
+            for (int j=0; j<player2.getShots()[0].length; j++) {
+                if (player2.getShots()[i][j].equals("X"))
+                    p2Counter++;
             }
         }
+        if (p2Counter == 17) {
+            System.out.println("——————————");
+            System.out.println(player2.getName() + " won");
+            return true;
+        }
+
         return false;
-
-//        for (int i = 0; i < player1.getShips().size(); i++) {
-//            if (player1.getShips().get(i).getCoordinates().size() > 0) {
-//                p1 = false;
-//            }
-//        }
-//        for (int i = 0; i < player2.getShips().size(); i++) {
-//            if (player2.getShips().get(i).getCoordinates().size() > 0) {
-//                p2 = false;
-//            }
-//        }
-//        if (p1 || p2) {
-//            if (p2) {
-//                System.out.println("——————————");
-//                System.out.println(player1.getName() + " won");
-//                return true;
-//            }
-//            if (p1) {
-//                System.out.println("——————————");
-//                System.out.println(player2.getName() + " won");
-//                return true;
-//            }
-//        }
-//        return false;
     }
 }
 

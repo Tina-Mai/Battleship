@@ -42,8 +42,9 @@ public class Player {
         // check coordinate based on the symbol in the opponent's grid
         // returns whether the shot was a hit or miss
         String[][] oppGrid = opponent.getGrid();
+
         if (oppGrid[y][x].equals("*")) {
-            opponent.updateGrid(x, y, "—");
+//            opponent.updateGrid(x, y, "—");
             shots[y][x] = "X";
             return true;
         }
