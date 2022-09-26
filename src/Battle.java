@@ -150,10 +150,6 @@ public class Battle {
 
             System.out.println(currentPlayer.getName() + "'s turn!\n");
 
-            //Show the player their ships
-            System.out.println("Your grid of ships:");
-            currentPlayer.printGrid();
-
             //Show the player their shots fired
             System.out.println("\nStarting shooting!");
             currentPlayer.printShots();
