@@ -96,7 +96,9 @@ public class Player {
     }
 
     public void printGrid(){
+        System.out.println("  1 2 3 4 5 6 7 8 9 10");
         for (int i=0; i< grid.length; i++){
+            System.out.print(i+1 + " ");
             for (int j=0; j<grid[0].length; j++){
                 System.out.print(grid[i][j]);
                 System.out.print(" ");
@@ -106,7 +108,9 @@ public class Player {
     }
 
     public void printShots(){
+        System.out.println("  1 2 3 4 5 6 7 8 9 10");
         for (int i=0; i<10; i++){
+            System.out.print(i+1 + " ");
             for (int j=0; j<10; j++){
                 System.out.print(shots[i][j]);
                 System.out.print(" ");
