@@ -48,9 +48,9 @@ public class Battle {
             // choose coordinates and orientation
             System.out.println("Where would you like to place your " + currentShip.getName() + " (length: " +
                     currentShip.getLength() + ")? Type the topmost or leftmost coordinate, then select orientation.");
-            System.out.print("x: ");
+            System.out.print("col: ");
             int startingX = s.nextInt() - 1;
-            System.out.print("y: ");
+            System.out.print("row: ");
             int startingY = s.nextInt() - 1;
             s.nextLine();
             System.out.print("Orientation (horizontal or vertical): ");
@@ -59,10 +59,10 @@ public class Battle {
             // validate user choice
             while (!checkCoords(startingX, startingY, orientation, player, length)) {
                 System.out.println("——————————");
-                System.out.println("Try a different combo of x, y, and orientation");
-                System.out.print("x: ");
+                System.out.println("Try a different combo of col, row, and orientation");
+                System.out.print("col: ");
                 startingX = s.nextInt() - 1;
-                System.out.print("y: ");
+                System.out.print("row: ");
                 startingY = s.nextInt() - 1;
                 s.nextLine();
                 System.out.print("Orientation: ");
@@ -95,11 +95,11 @@ public class Battle {
             return false;
         }
         if (!(x >= 0 && x < grid[0].length)) {
-            System.out.println("Invalid x.  Must be >0 and <" + grid[0].length);
+            System.out.println("Invalid col.  Must be >0 and <" + grid[0].length);
             return false;
         }
         if (!(y >= 0 && y < grid.length)) {
-            System.out.println("Invalid y.  Must be >0 and <" + grid[0].length);
+            System.out.println("Invalid row.  Must be >0 and <" + grid[0].length);
             return false;
         }
 
@@ -159,24 +159,24 @@ public class Battle {
             currentPlayer.printShots();
 
             //ask where they want to shoot and validate
-            System.out.print("What x-Coord do you want to shoot? ");
+            System.out.print("What col do you want to shoot? ");
             int xCoord = s.nextInt()-1;
             while (xCoord<0 || xCoord>9){
-                System.out.print("Please enter a valid x number 1-10: ");
+                System.out.print("Please enter a valid col number 1-10: ");
                 xCoord = s.nextInt()-1;
             }
-            System.out.print("What y-Coord do you want to shoot? ");
+            System.out.print("What row do you want to shoot? ");
             int yCoord = s.nextInt()-1;
             while (yCoord < 0 || yCoord > 9) {
-                System.out.print("Please enter a valid y number 1-10: ");
+                System.out.print("Please enter a valid row number 1-10: ");
                 yCoord = s.nextInt()-1;
             }
             // validate that they aren't shooting in a place where they've already shot
             while (!currentPlayer.getShots()[yCoord][xCoord].equals("—")) {
-                System.out.println("You've already shot there. Try another x and y.");
-                System.out.print("What x-Coord do you want to shoot? ");
+                System.out.println("You've already shot there. Try another col and row.");
+                System.out.print("What col do you want to shoot? ");
                 xCoord = s.nextInt()-1;
-                System.out.print("What y-Coord do you want to shoot? ");
+                System.out.print("What row do you want to shoot? ");
                 yCoord = s.nextInt()-1;
             }
 
@@ -204,24 +204,24 @@ public class Battle {
                 //take new coordinates
                 System.out.println("Play again!");
                 currentPlayer.printShots();
-                System.out.print("What x-Coord do you want to shoot? ");
+                System.out.print("What col do you want to shoot? ");
                 xCoord = s.nextInt()-1;
                 while (xCoord<0 || xCoord>9){
-                    System.out.print("Please enter a valid x number 1-10: ");
+                    System.out.print("Please enter a valid col number 1-10: ");
                     xCoord = s.nextInt()-1;
                 }
-                System.out.print("What y-Coord do you want to shoot? ");
+                System.out.print("What row do you want to shoot? ");
                 yCoord = s.nextInt()-1;
                 while (yCoord < 0 || yCoord > 9) {
-                    System.out.print("Please enter a valid y number 1-10: ");
+                    System.out.print("Please enter a valid row number 1-10: ");
                     yCoord = s.nextInt()-1;
                 }
                 // validate that they aren't shooting in a place where they've already shot
                 while (!currentPlayer.getShots()[yCoord][xCoord].equals("—")) {
-                    System.out.println("You've already shot there. Try another x and y.");
-                    System.out.print("What x-Coord do you want to shoot? ");
+                    System.out.println("You've already shot there. Try another col and row.");
+                    System.out.print("What col do you want to shoot? ");
                     xCoord = s.nextInt()-1;
-                    System.out.print("What y-Coord do you want to shoot? ");
+                    System.out.print("What row do you want to shoot? ");
                     yCoord = s.nextInt()-1;
                 }
                 hit = currentPlayer.shoot(xCoord, yCoord, opponentPlayer);
